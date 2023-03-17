@@ -253,7 +253,7 @@ class ChatHub:
         """
         Ask a question to the bot
         """
-        if not self.wss:
+        if not self.wss or self.wss.closed:
             self.wss = await self.session.ws_connect(
                 url="wss://sydney.bing.com/sydney/ChatHub",
                 headers=HEADERS,
