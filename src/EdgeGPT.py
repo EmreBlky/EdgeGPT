@@ -488,6 +488,4 @@ if __name__ == "__main__":
         except ModuleNotFoundError:
             print("You'll need to install `rich` for this feature: `pip install rich`")
             exit(1)
-    else:
-        import sys
     asyncio.run(main(args))
