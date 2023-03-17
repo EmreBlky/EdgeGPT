@@ -233,8 +233,8 @@ class ChatHub:
     """
 
     def __init__(self, conversation: Conversation) -> None:
-        self.session: Optional[aiohttp.ClientSession] = None
-        self.wss: Optional[ClientWebSocketResponse] = aiohttp.ClientSession()
+        self.session: Optional[aiohttp.ClientSession] = aiohttp.ClientSession()
+        self.wss: Optional[ClientWebSocketResponse] = None
         self.request: ChatHubRequest
         self.loop: bool
         self.task: asyncio.Task
