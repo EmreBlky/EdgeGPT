@@ -234,7 +234,7 @@ class ChatHub:
 
     def __init__(self, conversation: Conversation) -> None:
         self.session: Optional[aiohttp.ClientSession] = None
-        self.wss: Optional[ClientWebSocketResponse] = None
+        self.wss: Optional[ClientWebSocketResponse] = aiohttp.ClientSession()
         self.request: ChatHubRequest
         self.loop: bool
         self.task: asyncio.Task
@@ -253,14 +253,11 @@ class ChatHub:
         """
         Ask a question to the bot
         """
-        # Check if websocket is closed
-        if not self.session:
-            self.session = aiohttp.ClientSession()
         if not self.wss:
             self.wss = await self.session.ws_connect(
                 url="wss://sydney.bing.com/sydney/ChatHub",
                 headers=HEADERS,
-                proxy=self.proxy
+                proxy=self.proxy,
             )
             await self.__initial_handshake()
 
